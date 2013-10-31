@@ -8,7 +8,7 @@ void ServerManager::EnumerateServerInformation(LPWSTR domain)
 	DWORD resumeHandle = 0;
 	NET_API_STATUS ret = 0;
 	LPWSTR domainName = (LPWSTR)Util::DomainFromIP(Config::machine);
-	wprintf(L"domain name: %s\n", domainName);
+	
 	ret = NetServerEnum(NULL, 101, (LPBYTE *)&serverInfo, MAX_PREFERRED_LENGTH, &entriesRead, &totalEntries, SV_TYPE_ALL, domainName, &resumeHandle);
 	if(ret == NERR_Success)
 	{
@@ -73,9 +73,9 @@ void ServerManager::DumpToCSV()
 	for(i = 0; i < servers.size(); i++)
 	{
 		csvString.append(servers[i]->name.c_str());
-		csvString.append(L",");
+		csvString.append(L",\"");
 		csvString.append(Util::ServerFlagsToString(servers[i]->type));
-		csvString.append(L",");
+		csvString.append(L"\",");
 
 		if(servers[i]->shares.size() <= 0)
 		{
@@ -86,13 +86,14 @@ void ServerManager::DumpToCSV()
 			csvString.append(L"\"");
 			for(j = 0; j < servers[i]->shares.size(); j++)
 			{
-				csvString.append(L",");
 				csvString.append(servers[i]->shares[j]->c_str());
+				csvString.append(L",");
 			}
 			csvString.append(L"\"");
-			csv.AddRow((LPWSTR)csvString.c_str());
-			csvString.clear();
+
 		}
+		csv.AddRow((LPWSTR)csvString.c_str());
+		csvString.clear();
 	}
 
 	csv.PrintToFile();

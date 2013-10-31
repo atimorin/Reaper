@@ -19,6 +19,8 @@
 #include <WinBer.h>
 #include <IPHlpApi.h>
 #include <Icmpapi.h>
+#include <Dsgetdc.h>
+#include <DSRole.h>
 
 // Added for memory leak detection
 //#define _CRTDBG_MAP_ALLOC

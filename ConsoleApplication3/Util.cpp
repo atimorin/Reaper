@@ -189,25 +189,26 @@ LPWSTR Util::DomainFromIP(LPWSTR machine)
 {
 	PWKSTA_INFO_100 workInfo;
 	std::string retString;
+	std::wstring hostString;
+	LPWSTR siteName;
 	DWORD ret;
-
+	DSROLE_PRIMARY_DOMAIN_INFO_BASIC *buffer;
 	//ZeroMemory(retString, sizeof(retString));
+	if(machine[0] != L'\\' && machine[1] != L'\\')
+	{
+		hostString.append(L"\\\\");
+	}
+	
+	hostString.append(machine);
 
-	if((ret = NetWkstaGetInfo(machine, 100, (LPBYTE *)&workInfo)) != NERR_Success)
-	{
-		Util::Error(ret, L"NetWkstaGetInfo()");
-		wprintf(L"Ret = %x\n", ret);
-	}
-	else
-	{
-		retString.append(Util::AsciiString(workInfo->wki100_langroup));
-	}
-	NetApiBufferFree(workInfo);
-	//wprintf(L"Domain: %s\n", Util::WideString(retString.c_str()));
+	DsRoleGetPrimaryDomainInformation(machine, DsRolePrimaryDomainInfoBasic, (LPBYTE *)&buffer);
+
+	retString.append(Util::AsciiString(buffer->DomainNameFlat));
 
 	// Well apparently my "useless" (according to me prior) conversion functions have
 	// come in handy and fixed the aforementioned problem with returning a free'd string.
 	return  Util::WideString(retString.c_str());
+	//return buffer->DomainNameDns;
 }
 
 void Util::EnumShares()

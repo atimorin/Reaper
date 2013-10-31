@@ -91,18 +91,6 @@ void LSA::EnumerateSIDs(Session *session, SID_NAME_USE sidType)
 				std::wstring accountName;
 				accountName.append(translatedName->Name.Buffer, translatedName->Name.Length / sizeof(WCHAR));
 
-				// If the account name ends in a dollar sign then it is a machine account.
-				if(accountName.c_str()[accountName.length()-1] == 0x24 && Config::machineAccountHack)
-				{
-					//wprintf(L"Name: %s\nSID: %s\n\n", accountName.c_str(), newSidString.c_str());
-					//Util::PrintLine();
-				}
-				else if(accountName.c_str()[accountName.length()-1] != 0x24 && !Config::machineAccountHack)
-				{
-					//Util::Print(L"Name: %s\nSID: %s\n\n", accountName.c_str(), newSidString.c_str());
-					//Util::PrintLine();
-
-				}
 				// We've enumerated a SID, time to sort it into the right place.
 				switch(translatedName->Use)
 				{

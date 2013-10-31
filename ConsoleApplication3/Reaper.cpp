@@ -155,10 +155,10 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 	} 
 	// End options parsing.
-	AD::SetHost(L"192.168.73.3");
-	AD::GetDN();
-	AD::Login();
-	AD::EnumerateUsers();
+	//AD::SetHost(L"");
+	//AD::GetDN();
+	//AD::Login();
+	//AD::EnumerateUsers();
 
 	// Console setup
 	Util::SetConsoleColor(DEFAULT);

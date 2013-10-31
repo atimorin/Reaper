@@ -79,6 +79,10 @@ void GroupManager::DumpToCSV()
 		string.append(groups[i]->name);
 		string.append(L",");
 		string.append(L"\"");
+		if(groups[i]->users.size() == 0)
+		{
+			string.append(L"N/A");
+		}
 		for(j = 0; j < groups[i]->users.size(); j++)
 		{
 			if(j == groups[i]->users.size()-1)
