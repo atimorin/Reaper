@@ -157,8 +157,6 @@ void UserManager::DumpToCSV()
 
 	for(i = 0; i < users.size(); i++)
 	{
-
-		wprintf(L"SCRIPT PATH: %s\nLength: %d\n", users[i]->scriptPath.c_str(), lstrlen(users[i]->scriptPath.c_str()));
 		std::wstring csvString;
 		if(lstrlen(users[i]->accountName.c_str()) > 0)
 		{
