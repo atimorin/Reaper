@@ -63,6 +63,12 @@
     <ClInclude Include="AD.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="WTS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DNS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -108,6 +114,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Server.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WTS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DNS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

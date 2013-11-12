@@ -21,6 +21,8 @@
 #include <Icmpapi.h>
 #include <Dsgetdc.h>
 #include <DSRole.h>
+#include <WtsApi32.h>
+#include <WinDNS.h>
 
 // Added for memory leak detection
 //#define _CRTDBG_MAP_ALLOC
@@ -32,6 +34,13 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+
+enum ADSearchFilter
+{
+	AD_SEARCH_USER,
+	AD_SEARCH_GROUP,
+	AD_SEARCH_MACHINE
+};
 
 // Application-specific includes
 #include "User.h"
@@ -47,8 +56,11 @@
 #include "Group.h"
 #include "GroupManager.h"
 #include "AD.h"
-// Definitions
+#include "WTS.h"
+#include "DNS.h"
 
+// Definitions
+#define REAPER_VERSION "0.01"
 // Color definitions for terminal attributes.
 // Foreground colors.
 #define BLACK 0x00
@@ -88,4 +100,4 @@
 // since apparently the function that populates the user info struct will not
 // initialize fields to zero.
 #define UNINITIALIZED 0xCDCDCDCD
-#define REAPER_VERSION "0.01"
+

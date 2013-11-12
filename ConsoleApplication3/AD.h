@@ -38,5 +38,9 @@ public:
 	static GroupManager *GetGroupManager();
 	static void SetServerManager(ServerManager *s);
 	static ServerManager *GetServerManager();
-	static void EnumerateUsers();
+	static void Enumerate(ADSearchFilter searchFilter);
+	static void AddUsers(LDAPMessage *search);
+	static void AddGroups(LDAPMessage *search);
+	static void AddServers(LDAPMessage *search);
+	static void CNToAccountName(LPWSTR s, std::wstring *d);
 };

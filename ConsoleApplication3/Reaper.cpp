@@ -2,7 +2,7 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {	
-	//Initial manager setup
+	// Initial manager setup
 	UserManager userManager;
 	ServerManager serverManager;
 	GroupManager groupManager;
@@ -10,9 +10,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	session.userName = NULL;
 	session.password = NULL;
 
+	// Plumbing.
 	LSA::SetUserManager(&userManager);
 	LSA::SetGroupManager(&groupManager);
 	LSA::SetServerManager(&serverManager);
+
+	AD::SetUserManager(&userManager);
+	AD::SetGroupManager(&groupManager);
+	AD::SetServerManager(&serverManager);
 
 	// So apparently we're a bunch of cavemen/cavewomen living in the stone age.
 	// As such we have to roll our own UNIX-style command line parsing.
@@ -148,17 +153,13 @@ int _tmain(int argc, _TCHAR* argv[])
 			{
 				Config::printGroupInfo = true;
 			}
-			if(lstrcmp(option, L"m") == 0)
-			{
-				Config::printServerInfo = true;
-			}
 		}
 	} 
 	// End options parsing.
 	//AD::SetHost(L"");
 	//AD::GetDN();
 	//AD::Login();
-	//AD::EnumerateUsers();
+	//AD::Enumerate(AD_SEARCH_USER);
 
 	// Console setup
 	Util::SetConsoleColor(DEFAULT);

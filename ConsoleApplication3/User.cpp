@@ -73,6 +73,7 @@ void User::PrettyPrint()
 	if(groups.size() > 0)
 	{
 		DWORD j;
+		wprintf(L"Group size: %d\n", groups.size());
 		wprintf(L"Groups: ");
 		for(j = 0; j < groups.size(); j++)
 		{

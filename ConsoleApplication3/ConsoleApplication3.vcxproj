@@ -58,7 +58,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>netapi32.lib;secur32.lib;Mpr.lib;Wldap32.lib;Activeds.lib;Iphlpapi.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>netapi32.lib;secur32.lib;Mpr.lib;Wldap32.lib;Activeds.lib;Wtsapi32.lib;Iphlpapi.lib;Ws2_32.lib;Dnsapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <DataExecutionPrevention>false</DataExecutionPrevention>
     </Link>
   </ItemDefinitionGroup>
@@ -87,6 +87,7 @@
   <ItemGroup>
     <ClInclude Include="Config.h" />
     <ClInclude Include="CSV.h" />
+    <ClInclude Include="DNS.h" />
     <ClInclude Include="Group.h" />
     <ClInclude Include="GroupManager.h" />
     <ClInclude Include="Help.h" />
@@ -100,10 +101,12 @@
     <ClInclude Include="User.h" />
     <ClInclude Include="UserManager.h" />
     <ClInclude Include="Util.h" />
+    <ClInclude Include="WTS.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="CSV.cpp" />
+    <ClCompile Include="DNS.cpp" />
     <ClCompile Include="Group.cpp" />
     <ClCompile Include="GroupManager.cpp" />
     <ClCompile Include="AD.cpp" />
@@ -120,6 +123,7 @@
     <ClCompile Include="User.cpp" />
     <ClCompile Include="UserManager.cpp" />
     <ClCompile Include="Util.cpp" />
+    <ClCompile Include="WTS.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
